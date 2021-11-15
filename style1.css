@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  margin: 0px 170px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 15px 170px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 550px;
+  box-shadow: 3px 3px #dadada4f;
+}
+
+header div {
+  width: 30%;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+
+
+.active {
+  color: #00b39b;
+  align-self: center;
+}
+
+
+
+
+
+.section1 {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+#profil {
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-between;
+}
+.doctor {
+  background-color: #3d83df;
+}
+.doctor:hover {
+  background-color: #296ec9;
+}
+.patient {
+  background-color: #00ccb1;
+}
+.patient:hover {
+  background-color: #0daa95;
+}
+.clinic {
+  background-color: #283849;
+}
+.clinic:hover {
+  background-color: #1c2733;
+}
+.patient img,
+.doctor img,
+.clinic img {
+  width: 250px;
+  height: 250px;
+}
+.style {
+  width: 40%;
+  height: 700px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  color: rgb(112, 36, 36);
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+}
+hr {
+  margin: 60px -170px 60px -170px;
+}
+
+footer {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #747474;
+}
+footer p {
+  padding: 8px;
+}
