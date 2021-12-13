@@ -2,49 +2,67 @@
 	class Equip{
 		private $ref=null;
 		private $nom=null;
-		private $description=null;
+		private $dsc=null;
 		private $quantite=null;
 		private $prix=null;
-		private $password=null;
-		function __construct($ref, $nomduproduit, $description, $quantite, $prix){
+		private $img=null; 
+		private $id_catalogue=null;
+		// private $password=null;
+		function __construct($ref, $nom, $dsc, $quantite, $prix, $img, $id_catalogue){
 			$this->ref=$ref;
-			$this->nomduproduit=$nomduproduit;
-			$this->description=$description;
+			$this->nom=$nom;
+			$this->dsc=$dsc;
 			$this->quantite=$quantite;
 			$this->prix=$prix;
+			$this->img=$img;
+			$this->id_catalogue=$id_catalogue;
 		}
 		function getRef(){
 			return $this->ref;
 		}
 		function getNom(){
-			return $this->nomduproduit;
+			return $this->nom;
 		}
 		function getDesc(){
-			return $this->description;
+			return $this->dsc;
 		}
 		function getQt(){
 			return $this->quantite;
 		}
 		function getPrix(){
 			return $this->prix;
+		
 		}
-		function setRef(string $ref){
+		function getImage(){
+			return $this->img;
+		}
+		function getCateg(){
+			return $this->id_catalogue;
+		}
+		function setRef(){
 			$this->ref=$ref;
 		}
-		function setNom(string $nomduproduit){
-			$this->nomduproduit =$nomduproduit; 
+		function setNom(string $nom){
+			$this->nom =$nom; 
         }
-		function setDesc(string $description){
-			$this->description=$description;
+		function setDesc(string $dsc){
+			$this->dsc=$dsc;
 		}
-		function setQt(string $quantite){
-			$this->quantité=$quantite;
+		function setQt(int $quantite){
+			$this->quantite=$quantite;
 		}
-		function setPrix(string $prix){
+		function setPrix(int $prix){
 			$this->prix=$prix;
 		}
+		function setImage(string $img){
+			$this->img = $img;
+		}
+		function setCateg(int $id_catalogue){
+			$this->id_catalogue =$id_catalogue; 
+        }
 		
 	}
-
+	
+	
 
 ?>

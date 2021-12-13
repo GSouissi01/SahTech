@@ -8,29 +8,36 @@
     $equip = null;
 
     // create an instance of the controller
-    $EquipC = new EquipC();
+    $equipC = new EquipC();
     if (
-        isset($_POST["Ref"]) &&
-		isset($_POST["Nom du produit"]) &&		
-        isset($_POST["Description"]) &&
-		isset($_POST["Quantité"]) && 
-        isset($_POST["Prix"])
+        isset($_POST["ref"]) &&
+		isset($_POST["nom"]) &&		
+        isset($_POST["dsc"]) &&
+		isset($_POST["quantite"]) && 
+        isset($_POST["prix"])&&
+        isset($_POST["img"]) && 
+        isset($_POST["id_catalogue"])
     ) {
     if (
-            !empty($_POST["Ref"]) && 
-			!empty($_POST["Nom du produit"]) &&
-            !empty($_POST["Description"]) && 
-			!empty($_POST["Quantité"]) && 
-            !empty($_POST["Prix"]) 
+            !empty($_POST["ref"]) && 
+			!empty($_POST["nom"]) &&
+            !empty($_POST["dsc"]) && 
+			!empty($_POST["quantite"]) && 
+            !empty($_POST["prix"]) &&
+            !empty($_POST["img"]) && 
+            !empty($_POST["id_catalogue"])
     ) {
+            //$img = $this->uploadImg();
             $equip = new Equip(
-                $_POST['Ref'],
-				$_POST['Nom du produit'],
-                $_POST['Description'], 
-				$_POST['Quantité'],
-                $_POST['Prix']
+                $_POST['ref'],
+				$_POST['nom'],
+                $_POST['dsc'], 
+				$_POST['quantite'],
+                $_POST['prix'],
+                $_POST['img'],
+                $_POST['id_catalogue']
             );
-            $EquipC->ajouterequip($equip);
+            $equipC->ajouterequip($equip);
             header('Location:AfficherProduit.php');
         }
         else
@@ -45,7 +52,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
     <title>Produits</title>
 </head>
     <body>
@@ -60,41 +67,61 @@
             <table border="1" align="center">
                 <tr>
                     <td>
-                        <label for="Ref">Référence:
+                        <label for="ref">Référence:
                         </label>
                     </td>
-                    <td><input type="text" name="reference" id="reference" maxlength="20"></td>
+                    <td><input type="number" name="ref" id="ref" maxlength="20"></td>
                 </tr>
 				<tr>
                     <td>
-                        <label for="Nom">Nom du produit:
+                        <label for="nom">Nom du produit:
                         </label>
                     </td>
-                    <td><input type="text" name="nomduproduit" id="nomduproduit" maxlength="20"></td>
+                    <td>
+                        <input type="text" name="nom" id="nom" maxlength="20" ></td>
                 </tr>
                 <tr>   
                     <td>
-                        <label for="Description">Description:
+                        <label for="dsc">Description:
                         </label>
                     </td>
-                    <td><input type="text" name="description" id="description" maxlength="20"></td>
+                    <td>
+                        <input type="text" name="dsc" id="dsc" maxlength="20"></td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="Quantité">Quantite:
+                        <label for="quantite">Quantité:
                         </label>
                     </td>
                     <td>
-                        <input type="number" name="quantite" id="quantite">
+                        <input type="number" name="quantite" id="quantite" min=0>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="Prix">Prix:
+                        <label for="prix">Prix:
                         </label>
                     </td>
                     <td>
-                        <input type="number" name="prix" id="prix">
+                        <input type="number" name="prix" id="prix" min=0>
+                    </td>
+                </tr>
+                <tr>
+                    <td> 
+                        <label for="img"> Image: 
+                        </label>
+                    </td>
+                    <td>
+                        <input type="text" name="img" id="img">
+                    </td>
+                </tr>
+                <tr>
+                    <td> 
+                        <label for="id_catalogue"> ID Catalogue: 
+                        </label>
+                    </td>
+                    <td>
+                        <input type="number" name="id_catalogue" id="id_catalogue">
                     </td>
                 </tr>
                 <tr>

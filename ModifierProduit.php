@@ -1,42 +1,54 @@
 <?php
     require_once '../Model/Equip.php';
     require_once '../Controller/EquipC.php';
-
-    $error = "";
+    // ini_set('display_errors',1);
+    // error_reporting(E_ALL);
+    //$error = "";
 
     // create adherent
     $equip = null;
 
     // create an instance of the controller
-    $EquipC = new EquipC();
+    $equipC = new EquipC();
     if (
-        isset($_POST["Ref"]) &&
-		isset($_POST["Nom du produit"]) &&		
-        isset($_POST["Description"]) &&
-		isset($_POST["Quantité"]) && 
-        isset($_POST["Prix"]) 
+        isset($_POST['ref']) &&
+		isset($_POST['nom']) &&		
+        isset($_POST['dsc']) &&
+		isset($_POST['quantite']) && 
+        isset($_POST['prix']) &&
+        isset($_POST['img'])&&
+        isset($_POST['id_catalogue'])
     ) {
         if (
-            !empty($_POST["Ref"]) && 
-			!empty($_POST['Nom du produit']) &&
-            !empty($_POST["Description"]) && 
-			!empty($_POST["Quantité"]) && 
-            !empty($_POST["Prix"]) 
+            !empty($_POST['ref']) && 
+			!empty($_POST['nom']) &&
+            !empty($_POST['dsc']) && 
+			!empty($_POST['quantite']) &&  
+            !empty($_POST['prix'])&&
+            !empty($_POST['img'])&&
+            !empty($_POST['id_catalogue'])
         ) {
             $equip = new Equip(
-                $_POST['Ref'],
-				$_POST['Nom du produit'],
-                $_POST['Description'], 
-				$_POST['Quantité'],
-                $_POST['Prix']
+                $_POST['ref'],
+				$_POST['nom'],
+                $_POST['dsc'], 
+				$_POST['quantite'],
+                $_POST['prix'],
+                $_POST['img'],
+                $_POST['id_catalogue']
             );
-            $EquipC->modifierequip($equip, $_POST["Ref"]);
-            header('Location:AfficherProduit.php');
+            print_r($equip);
+            $equipC->modifierequip($equip, $_POST['ref']);
+            header("Location:./AfficherProduit.php");
         }
-        else
-            $error = "Missing information";
-    }    
+        // else
+        //     $error = "!!!";
+    } 
+   
+    //echo gettype($equip['nom']);
+   
 ?>
+    
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -48,54 +60,73 @@
 </head>
     <body>
         <button><a href="AfficherProduit.php">Retour à la liste des produits</a></button>
-        <hr>
-        
-        <div id="error">
-            <?php echo $error; ?>
-        </div>
-		
+        <!-- <hr> -->
+        <!-- <div id="error">
+        </div> -->
+		<?php
+			if (isset($_POST['ref'])){
+				$equip = $equipC->recupererequip($_POST['ref']);		
+		?>
         
         <form action="" method="POST">
             <table border="1" align="center">
                 <tr>
                     <td>
-                        <label for="reference">Référence:
+                        <label for="ref">Référence:
                         </label>
                     </td>
-                    <td><input type="text" name="reference" id="reference" value="<?php echo $equip['Ref']; ?>" maxlength="20"></td>
+                    <td><input type="number" name="ref" id="ref" value="<?php echo $equip['ref']; ?>" maxlength="20"></td>
                 </tr>
 				<tr>
                     <td>
-                        <label for="nomduproduit">Nom du produit:
+                        <label for="nom">Nom du produit:
                         </label>
                     </td>
-                    <td><input type="text" name="nomduproduit" id="nomduproduit" value="<?php echo $equip['Nom du produit']; ?>" maxlength="20"></td>
+                    <td><input type="text" name="nom" id="nom" value="<?php echo $equip['nom']; ?>" maxlength="60"></td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="description">Description:
+                        <label for="dsc">Description:
                         </label>
                     </td>
-                    <td><input type="text" name="description" id="description" value="<?php echo $equip['Description']; ?>" maxlength="20"></td>
+                    <td><input type="text" name="dsc" id="dsc" value="<?php echo $equip['dsc']; ?>" maxlength="60"></td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="Quantite">Quantité:
+                        <label for="quantite">Quantite:
                         </label>
                     </td>
                     <td>
-                        <input type="number" name="quantite" value="<?php echo $equip['Quantité']; ?>" id="quantite">
+                        <input type="number" name="quantite" min=0 value="<?php echo $equip['quantite']; ?>" id="quantite">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="Prix">Prix:
+                        <label for="prix">Prix:
                         </label>
                     </td>
                     <td>
-                        <input type="number" name="prix" id="prix" value="<?php echo $equip['Prix']; ?>">
+                        <input type="number" name="prix" id="prix" min=0 value="<?php echo $equip['prix']; ?>">
                     </td>
-                </tr>              
+                </tr> 
+                <tr>
+                    <td>
+                        <label for="img">Image:
+                        </label>
+                    </td>
+                    <td>
+                        <input type="text" name="img" id="img" value="<?php echo $equip['img']; ?>">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="id_catalogue">ID Catalogue:
+                        </label>
+                    </td>
+                    <td>
+                        <input type="number" name="id_catalogue" id="id_catalogue" value="<?php echo $equip['id_catalogue']; ?>">
+                    </td>
+                </tr>                         
                 <tr>
                     <td></td>
                     <td>
@@ -108,6 +139,7 @@
             </table>
         </form>
 		<?php
+            }
 		?>
     </body>
 </html>
